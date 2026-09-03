@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Mummy & Happy Teacher's Day! 🌸🎂</title>
+  <meta name="description" content="A special heartfelt birthday and Teacher's Day celebration website for the world's best Mummy and Guru." />
+
+  <!-- Google Fonts for luxury and warmth -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Confetti Canvas Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Floating Falling Rose Petals Canvas -->
+  <canvas id="petalsCanvas"></canvas>
+
+  <!-- Audio Element -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="WhatsApp Audio 2026-09-03 at 21.29.37.mpeg" type="audio/mpeg">
+    <source src="WhatsApp Audio 2026-09-03 at 21.29.37.mpeg" type="audio/mp3">
+    <source src="WhatsApp%20Audio%202026-09-03%20at%2021.29.37.mpeg" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Floating Music Player Widget -->
+  <aside class="music-pill" id="musicPill" title="Toggle Music">
+    <div class="vinyl-disc" id="vinylDisc">
+      <div class="vinyl-center"></div>
+    </div>
+    <div class="music-info">
+      <span class="music-title">Special Melody for Mummy</span>
+      <span class="music-status" id="musicStatusText">Tap to Play 🎵</span>
+    </div>
+    <button class="music-toggle-btn" id="musicToggleBtn" aria-label="Play/Pause Music">
+      <svg id="playIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M8 5v14l11-7z"/>
+      </svg>
+      <svg id="pauseIcon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="display:none;">
+        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+      </svg>
+    </button>
+  </aside>
+
+  <!-- Welcome / Entry Modal for Autoplay & Magical Feeling -->
+  <div class="welcome-overlay" id="welcomeOverlay">
+    <div class="welcome-card">
+      <div class="sparkle-badge">✨ 5th September Celebration ✨</div>
+      <h1 class="welcome-heading">A Special Gift for Our Dearest Mummy</h1>
+      <p class="welcome-sub">
+        Today is a double celebration — the birthday of the queen of our hearts, and Teacher's Day for my first and greatest Guru!
+      </p>
+      <div class="envelope-icon">💌</div>
+      <button class="btn-enter" id="btnEnter">
+        <span class="btn-text">Enter with Music & Love 🎶</span>
+      </button>
+      <span class="welcome-hint">Put on your sound for the best experience!</span>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#page-celebration" class="nav-brand">
+        <span class="brand-heart">💖</span> Mummy’s Special Day
+      </a>
+      <nav class="nav-links">
+        <a href="#page-celebration" class="nav-link active" data-target="page-celebration">🎂 Celebration</a>
+        <a href="#page-letter" class="nav-link" data-target="page-letter">💌 Letter to Guru</a>
+        <a href="#page-gallery" class="nav-link" data-target="page-gallery">📸 Treasured Memories</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page 1: Celebration & Interactive Cake -->
+  <section class="page-section active" id="page-celebration">
+    <div class="content-wrap text-center">
+      <div class="hero-badge">
+        <span>🌸 Happy Birthday & Happy Teacher’s Day! 🌸</span>
+      </div>
+
+      <h1 class="hero-title">
+        Happy Birthday, <span class="highlight-cursive">Mummy!</span>
+      </h1>
+      <p class="hero-subtitle">
+        "To the world, you are an incredible teacher shaping bright minds. <br />
+        To us, you are the world, our guiding light, and the heartbeat of our home."
+      </p>
+
+      <!-- Cake Stage -->
+      <div class="cake-container" id="cakeContainer">
+        <!-- Wish Ribbon -->
+        <div class="ribbon-banner" id="ribbonBanner">
+          🌟 Wishing You Eternal Happiness & Health! 🌟
+        </div>
+
+        <!-- Interactive Cake Illustration -->
+        <div class="interactive-cake">
+          <!-- Candles Layer -->
+          <div class="candles-wrapper">
+            <div class="candle c1">
+              <div class="flame" id="flame1"></div>
+              <div class="smoke" id="smoke1"></div>
+            </div>
+            <div class="candle c2">
+              <div class="flame" id="flame2"></div>
+              <div class="smoke" id="smoke2"></div>
+            </div>
+            <div class="candle c3">
+              <div class="flame" id="flame3"></div>
+              <div class="smoke" id="smoke3"></div>
+            </div>
+          </div>
+
+          <!-- Cake Tiers -->
+          <div class="cake-tier tier-top">
+            <div class="frosting-drips">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="cake-decorations">🍓 🌸 🍓</div>
+          </div>
+          <div class="cake-tier tier-middle">
+            <div class="frosting-stripes"></div>
+            <div class="cake-text">MOM</div>
+          </div>
+          <div class="cake-tier tier-bottom">
+            <div class="cake-plate"></div>
+          </div>
+        </div>
+
+        <!-- Cake Controls -->
+        <div class="cake-actions">
+          <button class="action-btn primary" id="btnBlowCandles">
+            <span class="btn-icon">💨</span>
+            <span id="blowText">Blow the Candles!</span>
+          </button>
+          <button class="action-btn secondary" id="btnCutCake">
+            <span class="btn-icon">🎂</span>
+            <span id="cutText">Cut the Cake</span>
+          </button>
+          <button class="action-btn tertiary" id="btnThrowConfetti">
+            <span class="btn-icon">🎉</span>
+            <span>More Fireworks!</span>
+          </button>
+        </div>
+
+        <div class="cake-message" id="cakeStatusMsg">
+          ✨ Make a wish, Mummy, and tap to blow the candles! ✨
+        </div>
+      </div>
+
+      <!-- Jump to Next Page -->
+      <div class="next-step-wrap">
+        <button class="btn-next-step" onclick="scrollToSection('page-letter')">
+          <span>Read My Heartfelt Note for You</span>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 2: Heartfelt Letter for Mummy & My First Guru -->
+  <section class="page-section" id="page-letter">
+    <div class="content-wrap">
+      <div class="letter-badge-wrap text-center">
+        <span class="sub-badge">A Heartfelt Tribute</span>
+        <h2 class="section-title">To Mummy, My First Teacher & Eternal Guru 🌸</h2>
+        <p class="section-sub">A letter written straight from the depths of my heart</p>
+      </div>
+
+      <div class="letter-parchment">
+        <div class="letter-border-corner top-left"></div>
+        <div class="letter-border-corner top-right"></div>
+        <div class="letter-border-corner bottom-left"></div>
+        <div class="letter-border-corner bottom-right"></div>
+
+        <div class="wax-seal">
+          <span>❤️</span>
+        </div>
+
+        <div class="letter-body">
+          <p class="salutation">My Dearest Mummy,</p>
+
+          <p>
+            They say that God could not be everywhere, and therefore He created Mothers. But for me, He blessed me twice over — because in you, He gave me not just the most loving mother, but also my <strong>first teacher, my truest philosopher, and my eternal Guru</strong>.
+          </p>
+
+          <p>
+            How poetic and beautiful it is that your birthday arrives hand-in-hand with <strong>Teacher's Day</strong>! Every single day, you step into school and pour your wisdom, patience, and love into shaping so many young lives. But long before I ever held a schoolbook, you held my tiny hands and taught me how to speak, how to walk, how to be honest, and how to face the world with courage and kindness.
+          </p>
+
+          <div class="quote-card">
+            <span class="quote-mark">“</span>
+            A teacher inspires the mind, but a mother touches the soul. You do both effortlessly every single day.
+            <span class="quote-mark">”</span>
+          </div>
+
+          <p>
+            Thank you for every silent sacrifice you’ve made, every prayer you’ve whispered for my happiness, every delicious meal made with love, and every warm hug that instantly makes all worries vanish. Your strength inspires me, your smile illuminates our entire house, and your blessings are my greatest superpower.
+          </p>
+
+          <p>
+            On this double celebration of your life and your noble calling, I pray for your lifelong health, sparkling joy, endless laughter, and boundless peace. May every dream in your pure heart come true!
+          </p>
+
+          <div class="letter-signoff">
+            <p>With endless love, respect, and gratitude,</p>
+            <p class="signature-cursive">Your Loving Child Always 💕</p>
+          </div>
+        </div>
+
+        <!-- Interactive Love & Blessings Button -->
+        <div class="love-counter-box text-center">
+          <p class="love-prompt">Tap the heart to send endless love and hugs to Mummy!</p>
+          <button class="btn-send-love" id="btnSendLove">
+            <span class="heart-pulse">💖</span>
+            <span class="love-count-text">Love Count: <span id="loveCount">108</span></span>
+          </button>
+          <div class="floating-hearts-container" id="floatingHeartsContainer"></div>
+        </div>
+      </div>
+
+      <!-- Jump to Next Page -->
+      <div class="next-step-wrap text-center">
+        <button class="btn-next-step" onclick="scrollToSection('page-gallery')">
+          <span>Walk Down Memory Lane (Photos)</span>
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 3: Treasured Memories (Photo Gallery) -->
+  <section class="page-section" id="page-gallery">
+    <div class="content-wrap">
+      <div class="text-center gallery-header">
+        <span class="sub-badge">Treasured Moments</span>
+        <h2 class="section-title">Memories With Our Dearest Mummy 📸</h2>
+        <p class="section-sub">Click on any photo to open it big and read the special note behind each moment!</p>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Photo Card 1: School / Teacher function -->
+        <article class="polaroid-card" onclick="openLightbox(0)">
+          <div class="card-image-wrap">
+            <img src="WhatsApp Image 2026-09-03 at 16.13.27.jpeg" alt="Mummy at School Celebration" loading="lazy" />
+            <div class="zoom-badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+              </svg>
+              <span>Click to view note</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">
+            <span class="tag-pill">👩‍🏫 Inspiring Educator</span>
+            <h3 class="card-title">Grace, Wisdom & Dedication</h3>
+            <p class="card-preview">Standing proud at school, guiding generation after generation with love and light...</p>
+            <div class="card-click-hint">Tap to expand & read note 💖</div>
+          </div>
+        </article>
+
+        <!-- Photo Card 2: Selfie with daughter -->
+        <article class="polaroid-card" onclick="openLightbox(1)">
+          <div class="card-image-wrap">
+            <img src="WhatsApp Image 2026-09-03 at 16.13.28 (1).jpeg" alt="Mummy with Daughter" loading="lazy" />
+            <div class="zoom-badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+              </svg>
+              <span>Click to view note</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">
+            <span class="tag-pill">👭 Best Friends Forever</span>
+            <h3 class="card-title">My Pillar & Safe Haven</h3>
+            <p class="card-preview">In your warm smile, I find my greatest peace, confidence, and happiness...</p>
+            <div class="card-click-hint">Tap to expand & read note 💖</div>
+          </div>
+        </article>
+
+        <!-- Photo Card 3: In front of MOM illuminated tree -->
+        <article class="polaroid-card" onclick="openLightbox(2)">
+          <div class="card-image-wrap">
+            <img src="WhatsApp Image 2026-09-03 at 16.13.28.jpeg" alt="Mummy in front of MOM lights" loading="lazy" />
+            <div class="zoom-badge">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+              </svg>
+              <span>Click to view note</span>
+            </div>
+          </div>
+          <div class="polaroid-caption">
+            <span class="tag-pill">✨ The Light of Our World</span>
+            <h3 class="card-title">Glowing Bright: MOM</h3>
+            <p class="card-preview">A picture that speaks a thousand words — our entire world revolves around you...</p>
+            <div class="card-click-hint">Tap to expand & read note 💖</div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Bottom Blessing Card -->
+      <div class="final-wish-card text-center">
+        <h3>Forever Grateful, Forever Blessed 🌷</h3>
+        <p>
+          "Mummy, you make our lives infinitely beautiful. Happy Birthday, Happy Teacher's Day, and thank you for being you!"
+        </p>
+        <button class="action-btn primary" onclick="scrollToSection('page-celebration'); fireHugeCelebration();">
+          <span>🎂 Back to Celebration & Re-cut Cake</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- High-Res Interactive Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true">
+    <div class="lightbox-backdrop" onclick="closeLightbox()"></div>
+    <div class="lightbox-container">
+      <button class="lightbox-close-btn" onclick="closeLightbox()" aria-label="Close photo view">✕</button>
+
+      <!-- Navigation buttons -->
+      <button class="lightbox-nav-btn prev" onclick="navigateLightbox(-1)" aria-label="Previous photo">❮</button>
+      <button class="lightbox-nav-btn next" onclick="navigateLightbox(1)" aria-label="Next photo">❯</button>
+
+      <div class="lightbox-content">
+        <div class="lightbox-photo-side">
+          <img id="lightboxImage" src="" alt="Enlarged photo" />
+          <div class="photo-counter-badge" id="photoCounter">1 / 3</div>
+        </div>
+
+        <div class="lightbox-note-side">
+          <div class="note-tag" id="lightboxTag">Tag</div>
+          <h2 class="note-title" id="lightboxTitle">Photo Title</h2>
+          <div class="note-divider"></div>
+          <p class="note-description" id="lightboxText">Loving note description goes here...</p>
+          
+          <div class="note-memory-quote" id="lightboxQuote">
+            "Your love is our guiding compass."
+          </div>
+
+          <div class="note-footer">
+            <button class="btn-like-photo" id="btnLikePhoto" onclick="likeCurrentPhoto()">
+              <span id="photoHeartIcon">❤️</span>
+              <span id="photoLikeCount">Loving This!</span>
+            </button>
+            <span class="note-author">For Mummy, With All My Heart</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer text-center">
+    <p>Crafted with boundless love and reverence for Mummy on her special Birthday & Teacher's Day 🌸</p>
+    <p class="footer-sub">5th September • The Most Blessed Day</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
